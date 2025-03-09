@@ -63,6 +63,12 @@
   backdrop-filter: blur(10px);
   border-radius: 20px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .digit-container {
@@ -137,4 +143,43 @@
 
 .reveal-message.visible {
   clip-path: inset(0 0 0 0);
+}
+
+@keyframes number-flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.digit {
+  animation: pulse-glow 3s infinite;
 }

@@ -29,14 +29,6 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     isComplete: false
   });
   
-  const [prevTimeLeft, setPrevTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    isComplete: false
-  });
-
   const [flippingDigits, setFlippingDigits] = useState({
     days: false,
     hours: false,
@@ -68,36 +60,48 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   }, [targetDate, onComplete]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const newTimeLeft = calculateTimeLeft();
-      setPrevTimeLeft(timeLeft);
-      setTimeLeft(newTimeLeft);
-      
-      // Trigger flip animations when digits change
-      setFlippingDigits({
-        days: prevTimeLeft.days !== newTimeLeft.days,
-        hours: prevTimeLeft.hours !== newTimeLeft.hours,
-        minutes: prevTimeLeft.minutes !== newTimeLeft.minutes,
-        seconds: prevTimeLeft.seconds !== newTimeLeft.seconds
-      });
-      
-      // Reset flip state after animation completes
-      setTimeout(() => {
-        setFlippingDigits({
-          days: false,
-          hours: false,
-          minutes: false,
-          seconds: false
-        });
-      }, 500);
-      
-    }, 1000);
-    
     // Initial calculation
     setTimeLeft(calculateTimeLeft());
     
+    const timer = setInterval(() => {
+      const newTimeLeft = calculateTimeLeft();
+      
+      // Only update if time has changed
+      setTimeLeft(prevTimeLeft => {
+        // Check if any values have changed
+        const hasChanged = 
+          prevTimeLeft.days !== newTimeLeft.days ||
+          prevTimeLeft.hours !== newTimeLeft.hours ||
+          prevTimeLeft.minutes !== newTimeLeft.minutes ||
+          prevTimeLeft.seconds !== newTimeLeft.seconds ||
+          prevTimeLeft.isComplete !== newTimeLeft.isComplete;
+        
+        // Set flipping digits based on what changed
+        if (hasChanged) {
+          setFlippingDigits({
+            days: prevTimeLeft.days !== newTimeLeft.days,
+            hours: prevTimeLeft.hours !== newTimeLeft.hours,
+            minutes: prevTimeLeft.minutes !== newTimeLeft.minutes,
+            seconds: prevTimeLeft.seconds !== newTimeLeft.seconds
+          });
+          
+          // Reset flip state after animation completes
+          setTimeout(() => {
+            setFlippingDigits({
+              days: false,
+              hours: false,
+              minutes: false,
+              seconds: false
+            });
+          }, 500);
+        }
+        
+        return hasChanged ? newTimeLeft : prevTimeLeft;
+      });
+    }, 1000);
+    
     return () => clearInterval(timer);
-  }, [calculateTimeLeft, prevTimeLeft, timeLeft]);
+  }, [calculateTimeLeft]);
 
   // Pad single digits with a leading zero
   const padWithZero = (num: number) => {
@@ -111,7 +115,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
       <div className={cn(
         "flex flex-col items-center",
         `delayed-${delay}`,
-        "staggered"
+        "floating"
       )}>
         <div className="digit-container">
           <div className={cn(
