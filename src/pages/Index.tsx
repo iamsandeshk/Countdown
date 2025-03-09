@@ -1,11 +1,116 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState, useEffect } from 'react';
+import CountdownTimer from '@/components/CountdownTimer';
+import RevealMessage from '@/components/RevealMessage';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
+  const [isCountdownComplete, setIsCountdownComplete] = useState(false);
+  const [showFullMessage, setShowFullMessage] = useState(false);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const { toast } = useToast();
+
+  // Target date: March 10th at 12am
+  const targetDate = new Date('2025-03-10T00:00:00');
+  
+  // Check if the countdown is already complete on page load
+  useEffect(() => {
+    const now = new Date();
+    if (now >= targetDate) {
+      setIsCountdownComplete(true);
+    }
+    
+    // Set page as loaded after a short delay to allow for animations
+    const timer = setTimeout(() => {
+      setIsPageLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [targetDate]);
+
+  const handleCountdownComplete = () => {
+    setIsCountdownComplete(true);
+    toast({
+      title: "Moment has arrived",
+      description: "The countdown has reached zero. The message is now available.",
+    });
+  };
+
+  const handleRevealFullMessage = () => {
+    setShowFullMessage(true);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-black overflow-hidden">
+        <div className="absolute top-[-50%] left-[-50%] right-[-50%] bottom-[-50%] bg-[radial-gradient(circle_at_center,rgba(45,45,45,0.1),rgba(5,5,5,0.4))] animate-pulse-soft"></div>
+      </div>
+      
+      <div className={`w-full max-w-3xl mx-auto flex flex-col items-center transition-all duration-700 ease-out ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        {/* Header */}
+        <div className="staggered mb-16 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-thin tracking-tight mb-6">
+            <span className="block">Awaiting a Special Moment</span>
+          </h1>
+          <p className="text-gray-400 max-w-lg mx-auto">
+            Something extraordinary is coming. Return when the timer reaches zero to discover what's waiting for you.
+          </p>
+        </div>
+        
+        {/* Main Content */}
+        <div className="w-full">
+          {!isCountdownComplete ? (
+            <div className="countdown-section relative w-full">
+              <CountdownTimer 
+                targetDate={targetDate}
+                onComplete={handleCountdownComplete}
+                className="mb-10"
+              />
+              
+              <div className="staggered text-center mt-10">
+                <p className="text-gray-300 text-xl font-light">
+                  Please return when the countdown reaches zero
+                </p>
+                <p className="text-gray-500 text-sm mt-2">
+                  This message will be revealed at the designated time
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center">
+              <RevealMessage isRevealed={true} className="text-center mb-10 glass-panel p-10 w-full max-w-2xl">
+                <h2 className="text-4xl font-light mb-6">The Moment Has Arrived</h2>
+                <p className="text-xl text-gray-300 mb-8">
+                  What you've been waiting for is now revealed.
+                </p>
+                
+                {!showFullMessage ? (
+                  <Button 
+                    onClick={handleRevealFullMessage}
+                    className="bg-white text-black hover:bg-gray-200 transition-all duration-300 px-8 py-6 text-base rounded-full"
+                  >
+                    Reveal the Message
+                  </Button>
+                ) : (
+                  <div className="animate-fade-in">
+                    <p className="text-2xl mb-6">Your special moment awaits.</p>
+                    <p className="text-gray-400">This is the beginning of something memorable.</p>
+                  </div>
+                )}
+              </RevealMessage>
+            </div>
+          )}
+        </div>
+        
+        {/* Footer */}
+        <footer className="mt-auto pt-10 pb-6 w-full text-center">
+          <p className="text-gray-600 text-sm">
+            Come back when the time is right
+          </p>
+        </footer>
       </div>
     </div>
   );
