@@ -119,7 +119,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
       )}>
         <div className="digit-container">
           <div className={cn(
-            "digit glass-panel w-20 h-24 md:w-24 md:h-28 flex items-center justify-center text-3xl md:text-4xl font-light mb-2",
+            "digit glass-panel w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-light mb-2",
             isFlipping && "flip"
           )}>
             {paddedValue}
@@ -131,14 +131,14 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   };
 
   return (
-    <div className={cn("flex flex-col items-center", className)}>
-      <div className="flex gap-4 md:gap-6 justify-center mb-8">
+    <div className={cn("flex flex-col items-center w-full px-2", className)}>
+      <div className="flex gap-2 sm:gap-4 md:gap-6 justify-center mb-8 w-full overflow-visible">
         {renderDigit(timeLeft.days, flippingDigits.days, "Days", 1)}
-        <div className="self-center text-2xl font-thin mb-8">:</div>
+        <div className="self-center text-xl sm:text-2xl font-thin mb-8 flex items-center justify-center">:</div>
         {renderDigit(timeLeft.hours, flippingDigits.hours, "Hours", 2)}
-        <div className="self-center text-2xl font-thin mb-8">:</div>
+        <div className="self-center text-xl sm:text-2xl font-thin mb-8 flex items-center justify-center">:</div>
         {renderDigit(timeLeft.minutes, flippingDigits.minutes, "Minutes", 3)}
-        <div className="self-center text-2xl font-thin mb-8">:</div>
+        <div className="self-center text-xl sm:text-2xl font-thin mb-8 flex items-center justify-center">:</div>
         {renderDigit(timeLeft.seconds, flippingDigits.seconds, "Seconds", 4)}
       </div>
     </div>
