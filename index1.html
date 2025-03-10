@@ -528,7 +528,7 @@
   </head>
   <body>
    <video id="birthdayVideo" autoplay playsinline>
-     <source src="video.mp4" type="video/mp4" autoplay>
+     <source src="video.mp4" type="video/mp4">
    </video>
    <div class="main">
     <header>
@@ -636,8 +636,6 @@
           ctrIcon.classList.remove("fa-pause");
 
           ctrIcon.classList.add("fa-play");
-
-          I;
         } else {
           song.play();
 
@@ -685,9 +683,44 @@
           });
         }
       });
+
+      // Show video for initial loading then show the main content
+      document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('birthdayVideo');
+        const mainContent = document.querySelector('.main');
+        
+        // After video ends (or if no video), show main content
+        if (video) {
+          video.onended = function() {
+            video.style.display = 'none';
+            mainContent.style.display = 'flex';
+          };
+          
+          // Fallback if video doesn't play or is taking too long
+          setTimeout(function() {
+            video.style.display = 'none';
+            mainContent.style.display = 'flex';
+          }, 2000); // Reduced from 3000 to 2000ms for quicker transition
+        } else {
+          // If no video, show content immediately
+          mainContent.style.display = 'flex';
+        }
+      });
     </script>
     <script>
+      // Confetti function
+      function confetti() {
+        // Check if window.confetti is available
+        if (typeof window.confetti === 'function') {
+          window.confetti({
+            particleCount: 150,
+            spread: 180,
+            origin: { y: 0.6 }
+          });
+        }
+      }
       
+      // Confetti library
       !(function (t, e) {
         !(function t(e, n, a, i) {
           var o = !!(
@@ -1094,8 +1127,8 @@
           function V(t, e, n, a) {
             var i =
                 e.slice(),
-                o = t.getContext("2d"),
-                r = T(t, i, a.resize, n.width, n.height);
+              o = t.getContext("2d"),
+              r = T(t, i, a.resize, n.width, n.height);
             function c() {
               r.promise.then(function () {
                 b && b(t);
@@ -1216,38 +1249,6 @@
           ? (module.exports = t)
           : (e.confetti = t);
       })(this, window);
-
-      // Show video for initial loading then show the main content
-      document.addEventListener('DOMContentLoaded', function() {
-        const video = document.getElementById('birthdayVideo');
-        const mainContent = document.querySelector('.main');
-        
-        // After video ends (or if no video), show main content
-        if (video) {
-          video.onended = function() {
-            video.style.display = 'none';
-            mainContent.style.display = 'flex';
-          };
-          
-          // Fallback if video doesn't play or is taking too long
-          setTimeout(function() {
-            video.style.display = 'none';
-            mainContent.style.display = 'flex';
-          }, 3000); // 3 seconds fallback
-        } else {
-          // If no video, show content immediately
-          mainContent.style.display = 'flex';
-        }
-      });
-
-      // Function to launch confetti
-      function confetti() {
-        window.confetti({
-          particleCount: 150,
-          spread: 180,
-          origin: { y: 0.6 }
-        });
-      }
     </script>
   </body>
 </html>
