@@ -7,510 +7,470 @@
     <title>Happy-Birthday</title>
    <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     }
-    :root {
-      --primary-gradient: linear-gradient(135deg, #333, #111);
-      --secondary-gradient: linear-gradient(145deg, rgba(45, 45, 45, 0.8), rgba(5, 5, 5, 0.9));
-      --text-primary: #ffffff;
-      --glass-bg: rgba(30, 30, 30, 0.4);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --glass-shadow: rgba(0, 0, 0, 0.2);
-      --accent-color: rgba(255, 255, 255, 0.8);
-    }
+:root {
+    --primary-gradient: linear-gradient(135deg, #FF6B6B, #FFE66D);
+    --secondary-gradient: linear-gradient(145deg, #ff4646, #ff0000);
+    --text-primary: #2c3e50;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: rgba(31, 38, 135, 0.15);
+}
     body {
-      align-items: center;
-      justify-content: center;
-      font-family: 'Brush Script MT', cursive;
-      background-color: #000;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Brush Script MT', cursive;
     }
-    /* Video styling */
-    #birthdayVideo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      min-width: auto;
-      min-height: auto;
-      width: auto;
-      height: auto;
-      object-fit: cover;
-    }
+           /* Video styling */
+        #birthdayVideo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: auto;
+            min-height: auto;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
 
-    /* Main content styling - initially hidden */
-    .main {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      width: 100%;
-      height: 100%;
-      display: none;
-      background: black;
-      overflow-x: hidden;
-      position: relative;
-    }
+        /* Main content styling - initially hidden */
+        .main {
+         display: flex;
+    flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            height: 100%;
+            display: none;
+    background: linear-gradient(135deg, #fc89b1,rgb(62, 184, 255));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     
-    /* Background elements similar to index.html */
-    .main::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(45, 45, 45, 0.1), rgba(5, 5, 5, 0.4));
-      animation: pulse-soft 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-      pointer-events: none;
-    }
+    background-attachment: fixed;
+    overflow-x: hidden;
+        }
+        .heart-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    .heart-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-    }
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
 
-    .heart {
-      position: relative;
-      width: 100px;
-      height: 90px;
-      animation: heartbeat 1.5s ease-in-out infinite;
-    }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 52px;
+            height: 80px;
+            background: #ff3860;
+            border-radius: 50px 50px 0 0;
+            box-shadow: 0 0 40px rgba(255, 56, 96, 0.8);
+        }
 
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 52px;
-      height: 80px;
-      background: rgba(255, 56, 96, 0.8);
-      border-radius: 50px 50px 0 0;
-      box-shadow: 0 0 40px rgba(255, 56, 96, 0.3);
-    }
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
 
-    .heart::before {
-      left: 50px;
-      transform: rotate(-45deg);
-      transform-origin: 0 100%;
-    }
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
 
-    .heart::after {
-      left: 0;
-      transform: rotate(45deg);
-      transform-origin: 100% 100%;
-    }
+        /* Realistic heartbeat animation */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.15);
+            }
+            28% {
+                transform: scale(1.05);
+            }
+            42% {
+                transform: scale(1.25);
+            }
+            56% {
+                transform: scale(1);
+            }
+            70% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
 
-    /* Realistic heartbeat animation - smoother with cubic-bezier */
-    @keyframes heartbeat {
-      0% {
-        transform: scale(1);
-      }
-      14% {
-        transform: scale(1.15);
-      }
-      28% {
-        transform: scale(1.05);
-      }
-      42% {
-        transform: scale(1.25);
-      }
-      56% {
-        transform: scale(1);
-      }
-      70% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    /* Smooth pulse animation like in index.html */
-    @keyframes pulse-soft {
-      0%, 100% {
-        opacity: 0.3;
-      }
-      50% {
-        opacity: 0.5;
-      }
-    }
    </style>
     <style>
-    :root {
-      --primary-gradient: linear-gradient(135deg, #333, #111);
-      --secondary-gradient: linear-gradient(145deg, rgba(45, 45, 45, 0.8), rgba(5, 5, 5, 0.9));
-      --text-primary: #ffffff;
-      --glass-bg: rgba(30, 30, 30, 0.4);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --glass-shadow: rgba(0, 0, 0, 0.2);
-    }
+:root {
+    --primary-gradient: linear-gradient(135deg, #FF6B6B, #FFE66D);
+    --secondary-gradient: linear-gradient(145deg, #ff4646, #ff0000);
+    --text-primary: #2c3e50;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: rgba(31, 38, 135, 0.15);
+}
+        
 
-    @keyframes appear {
-      0% {
+@keyframes appear {
+    0% {
         opacity: 0;
         transform: translateY(30px) scale(0.9);
-      }
-      50% {
+    }
+    50% {
         letter-spacing: 2px;
         opacity: 0.7;
-      }
-      100% {
+    }
+    100% {
         opacity: 1;
         transform: translateY(0) scale(1);
         letter-spacing: 0.5px;
-      }
     }
+}
 
-    @keyframes float {
-      0%, 100% {
+@keyframes float {
+    0%, 100% {
         transform: translateY(0) rotate(-1deg);
-      }
-      50% {
+    }
+    50% {
         transform: translateY(-15px) rotate(1deg);
-      }
     }
+}
 
-    @keyframes shine {
-      0% {
+@keyframes shine {
+    0% {
         background-position: -100% 100%;
-      }
-      100% {
+    }
+    100% {
         background-position: 200% -100%;
-      }
     }
+}
 
-    @keyframes pulse {
-      0%, 100% {
+@keyframes pulse {
+    0%, 100% {
         transform: scale(1);
-      }
-      50% {
+    }
+    50% {
         transform: scale(1.05);
-      }
     }
+}
 
-    @keyframes gradientBG {
-      0% {
+@keyframes gradientBG {
+    0% {
         background-position: 0% 50%;
-      }
-      50% {
+    }
+    50% {
         background-position: 100% 50%;
-      }
-      100% {
+    }
+    100% {
         background-position: 0% 50%;
-      }
     }
+}
 
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.direct {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top:60px;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
 
-    .animate-fade-in {
-      animation: fade-in 1s ease-out forwards;
-    }
-
-    .direct {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      margin-top: 60px;
-      flex-wrap: wrap;
-      padding: 0 1rem;
-    }
-
-    #ctrIcon {
-      position: relative;
-      z-index: 10;
-      background: rgba(30, 30, 30, 0.7);
-      color: #ffffff;
-      border: none;
-      border-radius: 50%;
-      box-shadow: 
+#ctrIcon {
+    position: relative;
+    z-index: 10;
+    background: var(--secondary-gradient);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 
         0 10px 20px rgba(0, 0, 0, 0.2),
         inset 0 -5px 15px rgba(0, 0, 0, 0.3),
-        inset 0 5px 15px rgba(255, 255, 255, 0.1);
-      width: clamp(50px, 8vw, 70px);
-      height: clamp(50px, 8vw, 70px);
-      font-size: clamp(20px, 3vw, 30px);
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      margin-top: -2em;
-      margin-left: -5px;
-      animation: pulse 2s infinite;
-    }
+        inset 0 5px 15px rgba(255, 255, 255, 0.3);
+    width: clamp(50px, 8vw, 70px);
+    height: clamp(50px, 8vw, 70px);
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: -2em;
+    margin-left: -5px;
+    animation: pulse 2s infinite;
+}
 
-    #ctrIcon:hover {
-      transform: scale(1.15) rotate(360deg);
-      box-shadow: 
+#ctrIcon:hover {
+    transform: scale(1.15) rotate(360deg);
+    box-shadow: 
         0 15px 30px rgba(0, 0, 0, 0.3),
         inset 0 -5px 15px rgba(0, 0, 0, 0.3),
-        inset 0 5px 15px rgba(255, 255, 255, 0.1);
-    }
+        inset 0 5px 15px rgba(255, 255, 255, 0.3);
+}
 
-    #ctrIcon:active {
-      transform: scale(0.95);
-    }
+#ctrIcon:active {
+    transform: scale(0.95);
+    background: #ff8080;
+}
 
-    .young {
-      font-size: clamp(32px, 5vw, 42px);
-      color: rgb(255, 255, 255);
-      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-      width: min(90%, 380px);
-      margin: clamp(1rem, 3vw, 2rem) auto;
-      margin-top: 7em;
-      line-height: 1.4;
-      text-align: center;
-      padding: 1rem;
-      background: rgba(30, 30, 30, 0.4);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      animation: float 6s ease-in-out infinite;
-      transform-style: preserve-3d;
-      transition: all 0.4s ease;
-    }
+.young {
+    font-size: clamp(32px, 5vw, 42px);
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    width: min(90%, 380px);
+    margin: clamp(1rem, 3vw, 2rem) auto;
+    margin-top: 7em;
+    line-height: 1.4;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(188, 188, 188, 0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    animation: float 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: clamp(20px, 4vw, 40px);
-      z-index: 10000;
-      text-align: center;
-    }
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: clamp(20px, 4vw, 40px);
+    z-index: 10000;
+    text-align: center;
+}
 
-    header .happy {
-      font-size: clamp(36px, 8vw, 60px);
-      font-weight: 900;
-      background: linear-gradient(45deg, #ffffff, #cccccc, #ffffff);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-      letter-spacing: 3px;
-      animation: shine 3s linear infinite;
-    }
+header .happy {
+    font-size: clamp(36px, 8vw, 60px);
+    font-weight: 900;
+    background: linear-gradient(45deg, #e15377, #99e0ff, #f931ac);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 3px;
+    animation: shine 3s linear infinite;
+}
 
-    header.sticky {
-      padding: clamp(10px, 2vw, 20px);
-      background: rgba(20, 20, 20, 0.6);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    }
+header.sticky {
+    padding: clamp(10px, 2vw, 20px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
 
-    #invisible {
-      display: none;
-      color: var(--text-primary);
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
-      font-size: clamp(28px, 5vw, 24px);
-      position: relative;
-      animation: appear 2s 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
+#invisible {
+    display: none;
+    color: var(--text-primary);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    font-size: clamp(28px, 5vw, 24px);
+    position: relative;
+    animation: appear 2s 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
 
-    .wish1, .wish2 {
-      width: min(90%, 350px);
-      margin: 2rem auto;
-      padding: clamp(1rem, 3vw, 2rem);
-      background: rgba(30, 30, 30, 0.4);
-      color: #ffffff;
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      transform: translateZ(0);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: float 4s ease-in-out infinite;
-      transform-style: preserve-3d;
-    }
+.wish1, .wish2 {
+    width: min(90%, 350px);
+    margin: 2rem auto;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: rgba(188, 188, 188, 0.05);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    transform: translateZ(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: float 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
 
-    .wish1 {
-      margin-left: 1.8rem;
-      box-shadow: 
+.wish1 {
+    margin-left: 1.8rem;
+  box-shadow: 
         0 15px 40px var(--glass-shadow),
-        inset 0 -2px 6px rgba(255, 255, 255, 0.1);
-      animation-delay: 0.2s;
-    }
-    
-    .wish2 {
-      margin-right: 1.8rem;
-      box-shadow: 
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+}
+.wish2{
+    margin-right: 1.8rem;
+  box-shadow: 
         0 15px 40px var(--glass-shadow),
-        inset 0 -2px 6px rgba(255, 255, 255, 0.1);
-      animation-delay: 0.4s;
-    }
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+}
 
-    .wish1:hover, .wish2:hover {
-      transform: translateY(-8px) scale(1.02);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-    }
+.wish1:hover, .wish2:hover {
+    transform: translateY(-8px) scale(1.02);
+}
 
-    #reveal {
-      color: white;
-      padding: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 40px);
-      border: none;
-      background: rgba(30, 30, 30, 0.6);
-      backdrop-filter: blur(10px);
-      border-radius: 30px;
-      margin: 3.5em auto;
-      display: block;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
-      font-size: clamp(14px, 2vw, 18px);
-      font-weight: bold;
-      box-shadow: 
+#reveal {
+    color: black;
+    padding: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 40px);
+    border: none;
+    background: rgba(188, 188, 188, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 30px;
+    margin: 3.5em auto;
+    display: block;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: bold;
+    box-shadow: 
         0 10px 30px var(--glass-shadow),
-        inset 0 -2px 6px rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--glass-border);
-      animation: float 4s ease-in-out infinite;
-      transform-style: preserve-3d;
-    }
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--glass-border);
+    animation: float 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
 
-    #reveal:hover {
-      background: rgba(40, 40, 40, 0.7);
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 
+#reveal:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
         0 15px 40px var(--glass-shadow),
-        inset 0 -2px 6px rgba(255, 255, 255, 0.2);
-    }
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+}
 
-    #reveal:active {
-      transform: scale(0.96);
-    }
+#reveal:active {
+    transform: scale(0.96);
+}
 
-    .calendar, .age {
-      position: relative;
-      width: min(90%, 130px);
-      height: clamp(140px, 30vw, 140px);
-      background: rgba(30, 30, 30, 0.4);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      margin: 1rem;
-    }
+.calendar, .age {
+    position: relative;
+    width: min(90%, 130px);
+    height: clamp(140px, 30vw, 140px);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    box-shadow: 
+        0 10px 30px var(--glass-shadow),
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+  /*  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+    margin: 1rem;
+}
 
-    .calendar {
-      display: flex;
-    }
+.calendar {
+    display: flex;
+}
 
-    .calendar:hover, .age:hover {
-      transform: translateY(-8px) scale(1.02);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-    }
+.calendar:hover, .age:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 15px 40px var(--glass-shadow),
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+}
 
-    .left, .right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(24px, 4vw, 36px);
-      line-height: 1.2;
-      font-weight: bold;
-    }
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(24px, 4vw, 36px);
+    line-height: 1.2;
+    font-weight: bold;
+}
 
-    .right {
-      width: 70%;
-      background: rgba(40, 40, 40, 0.6);
-      color: #fff;
-      writing-mode: vertical-lr;
-      text-orientation: upright;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
-      letter-spacing: 2px;
-    }
+.right {
+    width: 70%;
+    background: var(--secondary-gradient);
+    color: #fff;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    letter-spacing: 2px;
+}
 
-    .left {
-      width: 100%;
-      color: var(--text-primary);
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-      font-size: clamp(32px, 5vw, 42px);
-    }
+.left {
+    width: 100%;
+    color: var(--text-primary);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: clamp(32px, 5vw, 42px);
+}
 
-    .age {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+.age {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-    .right1 {
-      color: var(--text-primary);
-      font-size: clamp(32px, 5vw, 42px);
-      font-weight: bold;
-      text-align: center;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-      line-height: 1.4;
-    }
+.right1 {
+    color: var(--text-primary);
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    line-height: 1.4;
+}
 
-    footer {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 1rem;
-      animation: float 4s ease-in-out infinite;
-      transform-style: preserve-3d;
-    }
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    animation: float 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
 
-    footer a:link, footer a:visited {
-      background: rgba(30, 30, 30, 0.4);
-      backdrop-filter: blur(10px);
-      border-radius: 30px;
-      margin: 2rem 0;
-      padding: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 40px);
-      font-size: clamp(16px, 2.5vw, 20px);
-      font-weight: bold;
-      color: var(--text-primary);
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+footer a:link, footer a:visited {
+    background: rgba(188, 188, 188, 0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 30px;
+    margin: 2rem 0;
+    padding: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 40px);
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: bold;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 
+        0 10px 30px var(--glass-shadow),
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-    footer a:hover {
-      background: rgba(40, 40, 40, 0.5);
-      transform: translateY(-5px) scale(1.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-    }
+footer a:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 15px 40px var(--glass-shadow),
+        inset 0 -2px 6px rgba(255, 255, 255, 0.5);
+}
 
-    footer a:active {
-      transform: scale(0.96);
-    }
+footer a:active {
+    transform: scale(0.96);
+}
 
-    /* Float animation for heart particles */
-    @keyframes floatUp {
-      to { transform: translateY(-100vh) rotate(360deg); }
-    }
-
-    /* Dark mode support - already dark themed */
-    @media (prefers-color-scheme: dark) {
-      :root {
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
         --text-primary: #ecf0f1;
-        --glass-bg: rgba(30, 30, 30, 0.4);
-      }
+        --glass-bg: rgba(255, 255, 255, 0.15);
     }
+}
     </style>
     <link
       rel="stylesheet"
@@ -528,7 +488,7 @@
   </head>
   <body>
    <video id="birthdayVideo" autoplay playsinline>
-     <source src="video.mp4" type="video/mp4">
+            <source src="video.mp4" type="video/mp4" autoplay>
    </video>
    <div class="main">
     <header>
@@ -589,7 +549,7 @@
     </div>
     <footer>
     <a href="https://www.instagram.com/iamsandeshk/" target="_blank">
-        Say ThAnK <i class="fa-brands fa-instagram" style="color: #ffffff"></i>
+        Say ThAnK <i class="fa-brands fa-instagram" style="color: #d62456"></i>
       </a>
       
     </footer>
@@ -597,8 +557,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
-      
-      
+      function showhide(event) {
+        event.innerHTML = "Hide it";
+      }
+
       function showhide(event) {
         var x = document.getElementById("invisible");
 
@@ -636,6 +598,8 @@
           ctrIcon.classList.remove("fa-pause");
 
           ctrIcon.classList.add("fa-play");
+
+          I;
         } else {
           song.play();
 
@@ -644,84 +608,31 @@
           ctrIcon.classList.remove("fa-play");
         }
       }
-      
-      // Improved smooth scroll behavior and header sticky effect
       window.addEventListener("scroll", function () {
-        var header = document.querySelector("header");
-        header.classList.toggle("sticky", window.scrollY > 0);
-      });
+    var header = document.querySelector("header");
+    header.classList.toggle("sticky", window.scrollY > 0);
+});
 
-      // Add smooth reveal animations using ScrollReveal
-      document.addEventListener('DOMContentLoaded', function() {
-        if (typeof ScrollReveal !== 'undefined') {
-          ScrollReveal({
-            distance: "60px",
-            duration: 1500,
-            delay: 150,
-            easing: 'cubic-bezier(0.5, 0, 0.3, 1)',
-            reset: true
-          });
+/* ScrollReveal({
+    distance: "60px",
+    duration: 1500,
+    delay: 150,
+    reset: true // This ensures that the animation triggers every time the element comes into view
+});
 
-          ScrollReveal().reveal(".calendar, #ctrIcon", {
-            origin: "bottom",
-            interval: 200
-          });
+ScrollReveal().reveal(".calendar, #ctrIcon", {
+    origin: "bottom",
+    interval: 200 // This adds a slight delay between each element's reveal
+});
 
-          ScrollReveal().reveal(".age", {
-            origin: "top",
-            interval: 200
-          });
-          
-          ScrollReveal().reveal(".wish1", {
-            origin: "left",
-            interval: 300
-          });
-          
-          ScrollReveal().reveal(".wish2", {
-            origin: "right",
-            interval: 300
-          });
-        }
-      });
-
-      // Show video for initial loading then show the main content
-      document.addEventListener('DOMContentLoaded', function() {
-        const video = document.getElementById('birthdayVideo');
-        const mainContent = document.querySelector('.main');
-        
-        // After video ends (or if no video), show main content
-        if (video) {
-          video.onended = function() {
-            video.style.display = 'none';
-            mainContent.style.display = 'flex';
-          };
-          
-          // Fallback if video doesn't play or is taking too long
-          setTimeout(function() {
-            video.style.display = 'none';
-            mainContent.style.display = 'flex';
-          }, 2000); // Reduced from 3000 to 2000ms for quicker transition
-        } else {
-          // If no video, show content immediately
-          mainContent.style.display = 'flex';
-        }
-      });
+ScrollReveal().reveal(".age", {
+    origin: "top",
+    interval: 200 // This adds a slight delay between each element's reveal
+}); */
+     
     </script>
     <script>
-      // Confetti function
-      function confetti() {
-        // Check if window.confetti is available
-        if (typeof window.confetti === 'function') {
-          window.confetti({
-            particleCount: 150,
-            spread: 180,
-            origin: { y: 0.6 }
-          });
-        }
-      }
-      
-      // Confetti library
-      !(function (t, e) {
+        !(function (t, e) {
         !(function t(e, n, a, i) {
           var o = !!(
             e.Worker &&
@@ -882,16 +793,19 @@
           function x(t) {
             return parseInt(t, 16);
           }
-          function k(t) {
-            return t.map(C);
-          }
           function C(t) {
+            return t.map(k);
+          }
+          function k(t) {
             var e = String(t).replace(/[^0-9a-f]/gi, "");
-            return e.length < 6 && (e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2]), {
-              r: x(e.substring(0, 2)),
-              g: x(e.substring(2, 4)),
-              b: x(e.substring(4, 6)),
-            };
+            return (
+              e.length < 6 && (e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2]),
+              {
+                r: x(e.substring(0, 2)),
+                g: x(e.substring(2, 4)),
+                b: x(e.substring(4, 6)),
+              }
+            );
           }
           function I(t) {
             (t.width = document.documentElement.clientWidth),
@@ -902,353 +816,385 @@
             (t.width = e.width), (t.height = e.height);
           }
           function T(t, e, n, o, r) {
-            var l,
-              c,
-              s = e.slice(),
-              u = t.getContext("2d"),
-              d = l = function (e) {
-                u.clearRect(0, 0, o, r), (c = e);
-                for (
-                  var n = 0;
-                  n < s.length;
-                  n++
-                ) s[n](c);
-                return c < a || n;
-              },
-              f = (l && function () {
-                a = window.requestAnimationFrame(d);
+            var c,
+              s,
+              u = e.slice(),
+              d = t.getContext("2d"),
+              f = l(function (e) {
+                function l() {
+                  (c = s = null),
+                    d.clearRect(0, 0, o.width, o.height),
+                    r(),
+                    e();
+                }
+                (c = v.frame(function e() {
+                  !a ||
+                    (o.width === i.width && o.height === i.height) ||
+                    ((o.width = t.width = i.width),
+                    (o.height = t.height = i.height)),
+                    o.width ||
+                      o.height ||
+                      (n(t), (o.width = t.width), (o.height = t.height)),
+                    d.clearRect(0, 0, o.width, o.height),
+                    (u = u.filter(function (t) {
+                      return (function (t, e) {
+                        (e.x += Math.cos(e.angle2D) * e.velocity + e.drift),
+                          (e.y += Math.sin(e.angle2D) * e.velocity + e.gravity),
+                          (e.wobble += e.wobbleSpeed),
+                          (e.velocity *= e.decay),
+                          (e.tiltAngle += 0.1),
+                          (e.tiltSin = Math.sin(e.tiltAngle)),
+                          (e.tiltCos = Math.cos(e.tiltAngle)),
+                          (e.random = Math.random() + 2),
+                          (e.wobbleX =
+                            e.x + 10 * e.scalar * Math.cos(e.wobble)),
+                          (e.wobbleY =
+                            e.y + 10 * e.scalar * Math.sin(e.wobble));
+                        var n = e.tick++ / e.totalTicks,
+                          a = e.x + e.random * e.tiltCos,
+                          i = e.y + e.random * e.tiltSin,
+                          o = e.wobbleX + e.random * e.tiltCos,
+                          r = e.wobbleY + e.random * e.tiltSin;
+                        return (
+                          (t.fillStyle =
+                            "rgba(" +
+                            e.color.r +
+                            ", " +
+                            e.color.g +
+                            ", " +
+                            e.color.b +
+                            ", " +
+                            (1 - n) +
+                            ")"),
+                          t.beginPath(),
+                          "circle" === e.shape
+                            ? t.ellipse
+                              ? t.ellipse(
+                                  e.x,
+                                  e.y,
+                                  Math.abs(o - a) * e.ovalScalar,
+                                  Math.abs(r - i) * e.ovalScalar,
+                                  (Math.PI / 10) * e.wobble,
+                                  0,
+                                  2 * Math.PI
+                                )
+                              : (function (t, e, n, a, i, o, r, l, c) {
+                                  t.save(),
+                                    t.translate(e, n),
+                                    t.rotate(o),
+                                    t.scale(a, i),
+                                    t.arc(0, 0, 1, r, l, c),
+                                    t.restore();
+                                })(
+                                  t,
+                                  e.x,
+                                  e.y,
+                                  Math.abs(o - a) * e.ovalScalar,
+                                  Math.abs(r - i) * e.ovalScalar,
+                                  (Math.PI / 10) * e.wobble,
+                                  0,
+                                  2 * Math.PI
+                                )
+                            : (t.moveTo(Math.floor(e.x), Math.floor(e.y)),
+                              t.lineTo(Math.floor(e.wobbleX), Math.floor(i)),
+                              t.lineTo(Math.floor(o), Math.floor(r)),
+                              t.lineTo(Math.floor(a), Math.floor(e.wobbleY))),
+                          t.closePath(),
+                          t.fill(),
+                          e.tick < e.totalTicks
+                        );
+                      })(d, t);
+                    })),
+                    u.length ? (c = v.frame(e)) : l();
+                })),
+                  (s = l);
               });
-            i();
-            var a,
-              i = function () {
-                (a && v && window.cancelAnimationFrame(a)) ||
-                  (a && window.cancelAnimationFrame(a));
-              };
             return {
               addFettis: function (t) {
-                return s = s.concat(t), a || (a = window.requestAnimationFrame(d)), s.length;
+                return (u = u.concat(t)), f;
               },
               canvas: t,
-              promise: l
-                ? new Promise(function (a) {
-                    if (n && !f) return a();
-                    l.resolve = function () {
-                      l = null;
-                      a();
-                    };
-                  })
-                : void 0,
+              promise: f,
               reset: function () {
-                s.length && (s = []);
+                c && v.cancel(c), s && s();
               },
             };
           }
-          function E(t, e) {
-            for (var n = Math.cos(e), a = Math.sin(e), i = 0; i < t.length; i += 2) {
-              var o = t[i],
-                r = t[i + 1];
-              (t[i] = o * n - r * a), (t[i + 1] = o * a + r * n);
+          function E(t, n) {
+            var a,
+              i = !t,
+              r = !!M(n || {}, "resize"),
+              c = M(n, "disableForReducedMotion", Boolean),
+              s = o && !!M(n || {}, "useWorker") ? p() : null,
+              u = i ? I : S,
+              d = !(!t || !s) && !!t.__confetti_initialized,
+              f =
+                "function" == typeof matchMedia &&
+                matchMedia("(prefers-reduced-motion)").matches;
+            function h(e, n, i) {
+              for (
+                var o,
+                  r,
+                  l,
+                  c,
+                  s,
+                  d = M(e, "particleCount", w),
+                  f = M(e, "angle", Number),
+                  h = M(e, "spread", Number),
+                  m = M(e, "startVelocity", Number),
+                  g = M(e, "decay", Number),
+                  b = M(e, "gravity", Number),
+                  v = M(e, "drift", Number),
+                  p = M(e, "colors", C),
+                  y = M(e, "ticks", Number),
+                  x = M(e, "shapes"),
+                  k = M(e, "scalar"),
+                  I = (function (t) {
+                    var e = M(t, "origin", Object);
+                    return (
+                      (e.x = M(e, "x", Number)), (e.y = M(e, "y", Number)), e
+                    );
+                  })(e),
+                  S = d,
+                  E = [],
+                  F = t.width * I.x,
+                  N = t.height * I.y;
+                S--;
+
+              )
+                E.push(
+                  ((o = {
+                    x: F,
+                    y: N,
+                    angle: f,
+                    spread: h,
+                    startVelocity: m,
+                    color: p[S % p.length],
+                    shape:
+                      x[
+                        ((c = 0),
+                        (s = x.length),
+                        Math.floor(Math.random() * (s - c)) + c)
+                      ],
+                    ticks: y,
+                    decay: g,
+                    gravity: b,
+                    drift: v,
+                    scalar: k,
+                  }),
+                  (r = void 0),
+                  (l = void 0),
+                  (r = o.angle * (Math.PI / 180)),
+                  (l = o.spread * (Math.PI / 180)),
+                  {
+                    x: o.x,
+                    y: o.y,
+                    wobble: 10 * Math.random(),
+                    wobbleSpeed: Math.min(0.11, 0.1 * Math.random() + 0.05),
+                    velocity:
+                      0.5 * o.startVelocity + Math.random() * o.startVelocity,
+                    angle2D: -r + (0.5 * l - Math.random() * l),
+                    tiltAngle: (0.5 * Math.random() + 0.25) * Math.PI,
+                    color: o.color,
+                    shape: o.shape,
+                    tick: 0,
+                    totalTicks: o.ticks,
+                    decay: o.decay,
+                    drift: o.drift,
+                    random: Math.random() + 2,
+                    tiltSin: 0,
+                    tiltCos: 0,
+                    wobbleX: 0,
+                    wobbleY: 0,
+                    gravity: 3 * o.gravity,
+                    ovalScalar: 0.5,
+                    scalar: o.scalar,
+                  })
+                );
+              return a ? a.addFettis(E) : (a = T(t, E, u, n, i)).promise;
             }
-            return t;
-          }
-          function P(t, e, n) {
-            return t.create(e, n);
-          }
-          function R(t, e) {
-            var n = window.devicePixelRatio || 1,
-              a = {
-                width: window.innerWidth * n || 2,
-                height: window.innerHeight * n || 2,
-              },
-              i = window.ReactNativeWebView && window.ReactNativeWebView.nativeEvent,
-              o = (i && i.windowPhysicalPixels) || {},
-              r = (o.physicalWidth || a.width) * (o.scale || 1),
-              l = (o.physicalHeight || a.height) * (o.scale || 1);
-            return (
-              n && ((a.width = r), (a.height = l)),
-              e ||
-                isNaN(a.width) ||
-                isNaN(a.height) ||
-                ((t.width = a.width), (t.height = a.height)),
-              t.style || (t.style = {}),
-              (t.style.width = "100%"),
-              (t.style.height = "100%"),
-              a
-            );
-          }
-          function L(t) {
-            var e = t.angle * (Math.PI / 180),
-              n = t.spread * (Math.PI / 180);
-            return {
-              x: t.x,
-              y: t.y,
-              wobble: 10 * Math.random(),
-              wobbleSpeed: 0.1 + 0.1 * Math.random(),
-              velocity: 0.5 * t.startVelocity + Math.random() * t.startVelocity,
-              angle2D: -e + (0.5 * n - Math.random() * n),
-              tiltAngle: Math.random() * Math.PI,
-              color: t.color,
-              shape: t.shape,
-              tick: 0,
-              totalTicks: t.ticks,
-              decay: t.decay,
-              drift: t.drift,
-              random: Math.random() + 5,
-              tiltSin: 0,
-              tiltCos: 0,
-              wobbleX: 0,
-              wobbleY: 0,
-              gravity: 3 * t.gravity,
-              scalar: t.scalar,
-              driftTimeout: 0,
-            };
-          }
-          function B(t, e) {
-            var n,
-              a,
-              i,
-              o = e.width,
-              r = e.height;
-            t.beginPath();
-            var l = e.colors,
-              c = [
-                [0.25, 1.25, 0.75, 0.85, 0.25],
-                [0.15, 0.75, 0.85, 0.25, 0.15],
-                [0.25, 0.25, 0.75, 0.85, 0.95],
-                [0.75, 0.15, 0.15, 0.75, 0.95],
-                [0.95, 0.75, 0.05, 0.05, 0.75],
-                [0.85, 0.95, 0.45, 0.15, 0.15],
-              ];
-            var s = Math.floor(Math.random() * l.length),
-              u = l[s],
-              d = c[Math.floor(Math.random() * c.length)];
-            switch (
-              ((t.fillStyle =
-                "rgba(" + u.r + ", " + u.g + ", " + u.b + ", 1)"),
-              e.shape)
-            ) {
-              case "circle":
-                (n = 2 * o), t.arc(n / 4, n / 4, n / 4, 0, 2 * Math.PI);
-                break;
-              case "diamond":
-                t.beginPath(),
-                  t.moveTo(o / 2, 0),
-                  t.lineTo(o, r / 2),
-                  t.lineTo(o / 2, r),
-                  t.lineTo(0, r / 2),
-                  t.closePath();
-                break;
-              case "square":
-                t.fillRect(0, 0, o, r);
-                break;
-              case "triangle":
-                t.beginPath(),
-                  t.moveTo(o / 2, 0),
-                  t.lineTo(o, r),
-                  t.lineTo(0, r),
-                  t.closePath();
-                break;
-              case "star":
-                for (
-                  var f = Math.PI / 5, m = o / 2, g = o / 4, b = 0;
-                  b < 10;
-                  b++
-                )
-                  (a = b % 2 == 0 ? m : g),
-                    (i = 5 * b * f + Math.PI),
-                    t.lineTo(m + a * Math.sin(i), m - a * Math.cos(i));
-                break;
-              case "path":
-                var h = o / 1.25,
-                  v = r / 1.25;
-                t.translate(o / 8, r / 8),
-                  t.scale(0.8, 0.8),
-                  t.moveTo(h * d[0], v * d[0]),
-                  t.bezierCurveTo(
-                    h * d[1],
-                    v * d[1],
-                    h * d[2],
-                    v * d[2],
-                    h * d[3],
-                    v * d[3]
-                  ),
-                  t.bezierCurveTo(
-                    h * d[4],
-                    v * d[4],
-                    h * d[5],
-                    v * d[5],
-                    h * d[0],
-                    v * d[0]
+            function m(n) {
+              var o = c || M(n, "disableForReducedMotion", Boolean),
+                m = M(n, "zIndex", Number);
+              if (o && f)
+                return l(function (t) {
+                  t();
+                });
+              i && a
+                ? (t = a.canvas)
+                : i &&
+                  !t &&
+                  ((t = (function (t) {
+                    var e = document.createElement("canvas");
+                    return (
+                      (e.style.position = "fixed"),
+                      (e.style.top = "0px"),
+                      (e.style.left = "0px"),
+                      (e.style.pointerEvents = "none"),
+                      (e.style.zIndex = t),
+                      e
+                    );
+                  })(m)),
+                  document.body.appendChild(t)),
+                r && !d && u(t);
+              var g = { width: t.width, height: t.height };
+              function b() {
+                if (s) {
+                  var e = {
+                    getBoundingClientRect: function () {
+                      if (!i) return t.getBoundingClientRect();
+                    },
+                  };
+                  return (
+                    u(e),
+                    void s.postMessage({
+                      resize: { width: e.width, height: e.height },
+                    })
                   );
-                break;
-              default:
-                t.arc(o / 2, r / 2, (o + r) / 4, 0, 2 * Math.PI);
-            }
-            t.closePath(), t.fill();
-          }
-          function D(t, e) {
-            e.x += Math.cos(e.angle2D) * e.velocity + e.drift,
-              e.y += Math.sin(e.angle2D) * e.velocity + e.gravity,
-              (e.wobble += e.wobbleSpeed),
-              (e.velocity *= e.decay),
-              (e.tiltAngle += 0.1),
-              (e.tiltSin = Math.sin(e.tiltAngle)),
-              (e.tiltCos = Math.cos(e.tiltAngle)),
-              (e.random = Math.random() + 5),
-              (e.wobbleX = e.x + 10 * e.scalar * Math.cos(e.wobble)),
-              (e.wobbleY = e.y + 10 * e.scalar * Math.sin(e.wobble)),
-              (e.tick += 1);
-            var n = e.tick / e.totalTicks,
-              a = e.x + e.random * e.tiltCos,
-              i = e.y + e.random * e.tiltSin,
-              o = e.wobbleX + e.random * e.tiltCos,
-              r = e.wobbleY + e.random * e.tiltSin;
-            return (
-              (t.fillStyle =
-                "rgba(" +
-                e.color.r +
-                ", " +
-                e.color.g +
-                ", " +
-                e.color.b +
-                ", " +
-                (1 - n) +
-                ")"),
-              t.beginPath(),
-              t.moveTo(Math.floor(e.x), Math.floor(e.y)),
-              t.lineTo(Math.floor(e.wobbleX), Math.floor(i)),
-              t.lineTo(Math.floor(o), Math.floor(r)),
-              t.lineTo(Math.floor(a), Math.floor(e.wobbleY)),
-              t.closePath(),
-              t.fill(),
-              e.tick < e.totalTicks
-            );
-          }
-          function V(t, e, n, a) {
-            var i =
-                e.slice(),
-              o = t.getContext("2d"),
-              r = T(t, i, a.resize, n.width, n.height);
-            function c() {
-              r.promise.then(function () {
-                b && b(t);
-              }).catch(function () {});
-            }
-            function s() {
-              var t = e.length;
+                }
+                g.width = g.height = null;
+              }
+              function v() {
+                (a = null),
+                  r && e.removeEventListener("resize", b),
+                  i &&
+                    t &&
+                    (document.body.removeChild(t), (t = null), (d = !1));
+              }
               return (
-                (i = e.slice()),
-                e.length ? ((r.addFettis(i), void 0) : { done: !0 }
+                s && !d && s.init(t),
+                (d = !0),
+                s && (t.__confetti_initialized = !0),
+                r && e.addEventListener("resize", b, !1),
+                s ? s.fire(n, g, v) : h(n, g, v)
               );
             }
-            return {
-              canvas: t,
-              update: function () {
-                throw new Error(
-                  "Cannot update after animation started, use a new instance instead"
-                );
-              },
-              async: function (e) {
-                return (b = e), s(), r.promise;
-              },
-              sync: function () {
-                s();
-              },
-            };
-          }
-          function q(t, e, n, a) {
-            var i = T(t, [], a, n.width, n.height),
-              o = 0;
-            return {
-              canvas: t,
-              update: function (t) {
-                var n,
-                  a = (t || {}).particleCount || y.particleCount,
-                  r = [];
-                for (n = 0; n < a; n++) r.push(L(e));
-                return i.addFettis(r), (o += a), r;
-              },
-              async: function (n) {
-                var a,
-                  i = (n || {}).particleCount || y.particleCount,
-                  o = [];
-                for (a = 0; a < i; a++) o.push(L(e));
-                return r.addFettis(o), r.promise;
-              },
-              sync: function (t) {
-                var e,
-                  n = (t || {}).particleCount || y.particleCount,
-                  a = [];
-                for (e = 0; e < n; e++) a.push(L(t || {}));
-                return i.addFettis(a), i.promise;
-              },
-            };
-          }
-          function j(t, e) {
-            var n = e || {},
-              a = n.disableForReducedMotion || y.disableForReducedMotion,
-              i = p();
-            if (a && matchMedia("(prefers-reduced-motion)").matches) return l(function (t) {
-              t();
-            });
-            i && !i.init && (i.init = R);
-            var c = !t || null === t.canvas,
-              s = (c ? R : S)(i && i.canvas ? i.canvas : c && document.createElement("canvas")),
-              u = s.width,
-              d = s.height,
-              f = {
-                particleCount: M(t, "particleCount", y.particleCount),
-                angle: M(t, "angle", y.angle),
-                spread: M(t, "spread", y.spread),
-                startVelocity: M(t, "startVelocity", y.startVelocity),
-                decay: M(t, "decay", y.decay),
-                gravity: M(t, "gravity", y.gravity),
-                drift: M(t, "drift", y.drift),
-                ticks: M(t, "ticks", y.ticks),
-                x: M(t, "x", u / 2),
-                y: M(t, "y", d / 2),
-                shapes: M(t, "shapes", y.shapes),
-                scalar: M(t, "scalar", y.scalar),
-                zIndex: M(t, "zIndex", y.zIndex),
-                colors: k(M(t, "colors", y.colors)),
-              };
-            var m = [];
-            function g() {
-              if (!m.length) return function () {};
-              return (i && !i.init ? V : q)(s, f, { width: u, height: d }, i);
-            }
-            function b() {
-              var t = g();
-              t.sync(), m.push(t);
-            }
             return (
-              b(),
-              i && i.fire
-                ? i.fire(f, o, b)
-                : l(function (t) {
-                    if (!a && matchMedia("(prefers-reduced-motion)").matches)
-                      return void t();
-                    var e = g();
-                    e.async(t).then(function () {
-                      setTimeout(function () {
-                        e.canvas && h && (h.removeChild(e.canvas), (e.canvas = null));
-                      }, 0);
-                    });
-                  })
+              (m.reset = function () {
+                s && s.reset(), a && a.reset();
+              }),
+              m
             );
           }
-          return (j.reset = function () {
-            p().reset();
-          }), j;
-        })(e, n, "undefined" != typeof navigator && /^((?!chrome|android).)*safari/i.test(navigator.userAgent), "undefined" != typeof document);
-        "function" == typeof define && define.amd
-          ? define(function () {
-              return t;
-            })
-          : "object" == typeof module && module.exports
-          ? (module.exports = t)
-          : (e.confetti = t);
-      })(this, window);
+          function F() {
+            return b || (b = E(null, { useWorker: !0, resize: !0 })), b;
+          }
+          (n.exports = function () {
+            return F().apply(this, arguments);
+          }),
+            (n.exports.reset = function () {
+              F().reset();
+            }),
+            (n.exports.create = E);
+        })(
+          (function () {
+            return void 0 !== t
+              ? t
+              : "undefined" != typeof self
+              ? self
+              : this || {};
+          })(),
+          e,
+          !1
+        ),
+          (t.confetti = e.exports);
+      })(window, {});
+
+       // Add floating hearts occasionally
+setInterval(() => {
+    const heartCount = Math.floor(Math.random() * 2) + 2; // Generates 2 or 3 hearts
+    for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement('.main');
+        heart.textContent = '♥';
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = '110vh';
+        heart.style.fontSize = Math.random() * 30 + 20 + 'px';
+        heart.style.color = '#ff6b6b';
+        heart.style.animation = `floatUp ${Math.random() * 3 + 3}s linear`;
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }
+}, 3000);
+
+// Add keyframes for animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes explode {
+        0% { transform: translate(0, 0); opacity: 1; }
+        100% { transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px); opacity: 0; }
+    }
+
+    @keyframes floatUp {
+        to { transform: translateY(-100vh) rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
     </script>
+   <script>
+        // Create background particles
+        
+    
+
+        // Add slight random rotation to heartbeat
+        const heart = document.querySelector('.heart');
+        setInterval(() => {
+            heart.style.transform = `rotate(${45 + (Math.random() - 0.5) * 2}deg)`;
+        }, 1500);
+
+       // Vibration logic
+        function vibrateOnHeartbeat() {
+            const heart = document.querySelector('.heart');
+            const vibrationPattern = [0, 100, 50, 100, 50, 100, 0]; // Vibration pattern in milliseconds
+
+            heart.addEventListener('animationiteration', () => {
+                if (navigator.vibrate) {
+                    navigator.vibrate(vibrationPattern);
+                }
+            });
+        }
+
+        vibrateOnHeartbeat();
+   </script>
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('birthdayVideo');
+            const mainContent = document.querySelector('.main');
+
+            // Start transition when video starts playing
+            video.addEventListener('play', function() {
+                setTimeout(() => {
+                    video.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    video.pause();
+                }, 6000); // 6 seconds
+            });
+
+            // Handle cases where autoplay might be blocked
+            video.play().catch(error => {
+                console.error('Autoplay was blocked:', error);
+                // Show play button if autoplay is blocked
+                const playButton = document.createElement('button');
+                playButton.innerHTML = 'Lets Begin..';
+                playButton.style.position = 'absolute';
+                playButton.style.top = '50%';
+                playButton.style.left = '50%';
+                playButton.style.transform = 'translate(-50%, -50%)';
+                playButton.style.padding = '10px 20px';
+                playButton.style.fontSize = '20px';
+                playButton.style.backgroundColor = '#ff4081';
+                playButton.style.color = '#fff';
+                playButton.style.border = 'none';
+                playButton.style.borderRadius = '25px';
+                playButton.style.cursor = 'pointer';
+                playButton.addEventListener('click', () => {
+                    video.play();
+                    playButton.style.display = 'none';
+                });
+                document.body.appendChild(playButton);
+            });
+        });
+   </script>
   </body>
 </html>
