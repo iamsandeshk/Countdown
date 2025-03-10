@@ -7,7 +7,6 @@ import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [isCountdownComplete, setIsCountdownComplete] = useState(false);
-  const [showFullMessage, setShowFullMessage] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const { toast } = useToast();
 
@@ -31,10 +30,7 @@ const Index = () => {
 
   const handleCountdownComplete = () => {
     setIsCountdownComplete(true);
-    toast({
-      title: "Moment has arrived",
-      description: "The countdown has reached zero. The message is now available.",
-    });
+    // Removed toast notification that was causing the popup
   };
 
   const handleRevealFullMessage = () => {
