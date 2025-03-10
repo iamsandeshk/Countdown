@@ -35,7 +35,7 @@ const Index = () => {
 
   const handleRevealFullMessage = () => {
     // Navigate to index1.html
-    window.location.href = '/index1.html';
+    window.location.href = '/Countdown/index1.html';
   };
 
   return (
