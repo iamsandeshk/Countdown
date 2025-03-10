@@ -38,7 +38,8 @@ const Index = () => {
   };
 
   const handleRevealFullMessage = () => {
-    setShowFullMessage(true);
+    // Navigate to index1.html
+    window.location.href = '/index1.html';
   };
 
   return (
@@ -86,19 +87,12 @@ const Index = () => {
                   What you've been waiting for is now revealed.
                 </p>
                 
-                {!showFullMessage ? (
-                  <Button 
-                    onClick={handleRevealFullMessage}
-                    className="bg-white text-black hover:bg-gray-200 transition-all duration-300 px-6 sm:px-8 py-4 sm:py-6 text-base rounded-full"
-                  >
-                    Reveal the Message
-                  </Button>
-                ) : (
-                  <div className="animate-fade-in">
-                    <p className="text-xl sm:text-2xl mb-6">Your special moment awaits.</p>
-                    <p className="text-gray-400">This is the beginning of something memorable.</p>
-                  </div>
-                )}
+                <Button 
+                  onClick={handleRevealFullMessage}
+                  className="bg-white text-black hover:bg-gray-200 transition-all duration-300 px-6 sm:px-8 py-4 sm:py-6 text-base rounded-full"
+                >
+                  Reveal the Message
+                </Button>
               </RevealMessage>
             </div>
           )}
