@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -845,3 +846,408 @@
           function w(t) {
             return t < 0 ? 0 : Math.floor(t);
           }
+          function x(t) {
+            return parseInt(t, 16);
+          }
+          function k(t) {
+            return t.map(C);
+          }
+          function C(t) {
+            var e = String(t).replace(/[^0-9a-f]/gi, "");
+            return e.length < 6 && (e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2]), {
+              r: x(e.substring(0, 2)),
+              g: x(e.substring(2, 4)),
+              b: x(e.substring(4, 6)),
+            };
+          }
+          function I(t) {
+            (t.width = document.documentElement.clientWidth),
+              (t.height = document.documentElement.clientHeight);
+          }
+          function S(t) {
+            var e = t.getBoundingClientRect();
+            (t.width = e.width), (t.height = e.height);
+          }
+          function T(t, e, n, o, r) {
+            var l,
+              c,
+              s = e.slice(),
+              u = t.getContext("2d"),
+              d = l = function (e) {
+                u.clearRect(0, 0, o, r), (c = e);
+                for (
+                  var n = 0;
+                  n < s.length;
+                  n++
+                ) s[n](c);
+                return c < a || n;
+              },
+              f = (l && function () {
+                a = window.requestAnimationFrame(d);
+              });
+            i();
+            var a,
+              i = function () {
+                (a && v && window.cancelAnimationFrame(a)) ||
+                  (a && window.cancelAnimationFrame(a));
+              };
+            return {
+              addFettis: function (t) {
+                return s = s.concat(t), a || (a = window.requestAnimationFrame(d)), s.length;
+              },
+              canvas: t,
+              promise: l
+                ? new Promise(function (a) {
+                    if (n && !f) return a();
+                    l.resolve = function () {
+                      l = null;
+                      a();
+                    };
+                  })
+                : void 0,
+              reset: function () {
+                s.length && (s = []);
+              },
+            };
+          }
+          function E(t, e) {
+            for (var n = Math.cos(e), a = Math.sin(e), i = 0; i < t.length; i += 2) {
+              var o = t[i],
+                r = t[i + 1];
+              (t[i] = o * n - r * a), (t[i + 1] = o * a + r * n);
+            }
+            return t;
+          }
+          function P(t, e, n) {
+            return t.create(e, n);
+          }
+          function R(t, e) {
+            var n = window.devicePixelRatio || 1,
+              a = {
+                width: window.innerWidth * n || 2,
+                height: window.innerHeight * n || 2,
+              },
+              i = window.ReactNativeWebView && window.ReactNativeWebView.nativeEvent,
+              o = (i && i.windowPhysicalPixels) || {},
+              r = (o.physicalWidth || a.width) * (o.scale || 1),
+              l = (o.physicalHeight || a.height) * (o.scale || 1);
+            return (
+              n && ((a.width = r), (a.height = l)),
+              e ||
+                isNaN(a.width) ||
+                isNaN(a.height) ||
+                ((t.width = a.width), (t.height = a.height)),
+              t.style || (t.style = {}),
+              (t.style.width = "100%"),
+              (t.style.height = "100%"),
+              a
+            );
+          }
+          function L(t) {
+            var e = t.angle * (Math.PI / 180),
+              n = t.spread * (Math.PI / 180);
+            return {
+              x: t.x,
+              y: t.y,
+              wobble: 10 * Math.random(),
+              wobbleSpeed: 0.1 + 0.1 * Math.random(),
+              velocity: 0.5 * t.startVelocity + Math.random() * t.startVelocity,
+              angle2D: -e + (0.5 * n - Math.random() * n),
+              tiltAngle: Math.random() * Math.PI,
+              color: t.color,
+              shape: t.shape,
+              tick: 0,
+              totalTicks: t.ticks,
+              decay: t.decay,
+              drift: t.drift,
+              random: Math.random() + 5,
+              tiltSin: 0,
+              tiltCos: 0,
+              wobbleX: 0,
+              wobbleY: 0,
+              gravity: 3 * t.gravity,
+              scalar: t.scalar,
+              driftTimeout: 0,
+            };
+          }
+          function B(t, e) {
+            var n,
+              a,
+              i,
+              o = e.width,
+              r = e.height;
+            t.beginPath();
+            var l = e.colors,
+              c = [
+                [0.25, 1.25, 0.75, 0.85, 0.25],
+                [0.15, 0.75, 0.85, 0.25, 0.15],
+                [0.25, 0.25, 0.75, 0.85, 0.95],
+                [0.75, 0.15, 0.15, 0.75, 0.95],
+                [0.95, 0.75, 0.05, 0.05, 0.75],
+                [0.85, 0.95, 0.45, 0.15, 0.15],
+              ];
+            var s = Math.floor(Math.random() * l.length),
+              u = l[s],
+              d = c[Math.floor(Math.random() * c.length)];
+            switch (
+              ((t.fillStyle =
+                "rgba(" + u.r + ", " + u.g + ", " + u.b + ", 1)"),
+              e.shape)
+            ) {
+              case "circle":
+                (n = 2 * o), t.arc(n / 4, n / 4, n / 4, 0, 2 * Math.PI);
+                break;
+              case "diamond":
+                t.beginPath(),
+                  t.moveTo(o / 2, 0),
+                  t.lineTo(o, r / 2),
+                  t.lineTo(o / 2, r),
+                  t.lineTo(0, r / 2),
+                  t.closePath();
+                break;
+              case "square":
+                t.fillRect(0, 0, o, r);
+                break;
+              case "triangle":
+                t.beginPath(),
+                  t.moveTo(o / 2, 0),
+                  t.lineTo(o, r),
+                  t.lineTo(0, r),
+                  t.closePath();
+                break;
+              case "star":
+                for (
+                  var f = Math.PI / 5, m = o / 2, g = o / 4, b = 0;
+                  b < 10;
+                  b++
+                )
+                  (a = b % 2 == 0 ? m : g),
+                    (i = 5 * b * f + Math.PI),
+                    t.lineTo(m + a * Math.sin(i), m - a * Math.cos(i));
+                break;
+              case "path":
+                var h = o / 1.25,
+                  v = r / 1.25;
+                t.translate(o / 8, r / 8),
+                  t.scale(0.8, 0.8),
+                  t.moveTo(h * d[0], v * d[0]),
+                  t.bezierCurveTo(
+                    h * d[1],
+                    v * d[1],
+                    h * d[2],
+                    v * d[2],
+                    h * d[3],
+                    v * d[3]
+                  ),
+                  t.bezierCurveTo(
+                    h * d[4],
+                    v * d[4],
+                    h * d[5],
+                    v * d[5],
+                    h * d[0],
+                    v * d[0]
+                  );
+                break;
+              default:
+                t.arc(o / 2, r / 2, (o + r) / 4, 0, 2 * Math.PI);
+            }
+            t.closePath(), t.fill();
+          }
+          function D(t, e) {
+            e.x += Math.cos(e.angle2D) * e.velocity + e.drift,
+              e.y += Math.sin(e.angle2D) * e.velocity + e.gravity,
+              (e.wobble += e.wobbleSpeed),
+              (e.velocity *= e.decay),
+              (e.tiltAngle += 0.1),
+              (e.tiltSin = Math.sin(e.tiltAngle)),
+              (e.tiltCos = Math.cos(e.tiltAngle)),
+              (e.random = Math.random() + 5),
+              (e.wobbleX = e.x + 10 * e.scalar * Math.cos(e.wobble)),
+              (e.wobbleY = e.y + 10 * e.scalar * Math.sin(e.wobble)),
+              (e.tick += 1);
+            var n = e.tick / e.totalTicks,
+              a = e.x + e.random * e.tiltCos,
+              i = e.y + e.random * e.tiltSin,
+              o = e.wobbleX + e.random * e.tiltCos,
+              r = e.wobbleY + e.random * e.tiltSin;
+            return (
+              (t.fillStyle =
+                "rgba(" +
+                e.color.r +
+                ", " +
+                e.color.g +
+                ", " +
+                e.color.b +
+                ", " +
+                (1 - n) +
+                ")"),
+              t.beginPath(),
+              t.moveTo(Math.floor(e.x), Math.floor(e.y)),
+              t.lineTo(Math.floor(e.wobbleX), Math.floor(i)),
+              t.lineTo(Math.floor(o), Math.floor(r)),
+              t.lineTo(Math.floor(a), Math.floor(e.wobbleY)),
+              t.closePath(),
+              t.fill(),
+              e.tick < e.totalTicks
+            );
+          }
+          function V(t, e, n, a) {
+            var i =
+                e.slice(),
+                o = t.getContext("2d"),
+                r = T(t, i, a.resize, n.width, n.height);
+            function c() {
+              r.promise.then(function () {
+                b && b(t);
+              }).catch(function () {});
+            }
+            function s() {
+              var t = e.length;
+              return (
+                (i = e.slice()),
+                e.length ? ((r.addFettis(i), void 0) : { done: !0 }
+              );
+            }
+            return {
+              canvas: t,
+              update: function () {
+                throw new Error(
+                  "Cannot update after animation started, use a new instance instead"
+                );
+              },
+              async: function (e) {
+                return (b = e), s(), r.promise;
+              },
+              sync: function () {
+                s();
+              },
+            };
+          }
+          function q(t, e, n, a) {
+            var i = T(t, [], a, n.width, n.height),
+              o = 0;
+            return {
+              canvas: t,
+              update: function (t) {
+                var n,
+                  a = (t || {}).particleCount || y.particleCount,
+                  r = [];
+                for (n = 0; n < a; n++) r.push(L(e));
+                return i.addFettis(r), (o += a), r;
+              },
+              async: function (n) {
+                var a,
+                  i = (n || {}).particleCount || y.particleCount,
+                  o = [];
+                for (a = 0; a < i; a++) o.push(L(e));
+                return r.addFettis(o), r.promise;
+              },
+              sync: function (t) {
+                var e,
+                  n = (t || {}).particleCount || y.particleCount,
+                  a = [];
+                for (e = 0; e < n; e++) a.push(L(t || {}));
+                return i.addFettis(a), i.promise;
+              },
+            };
+          }
+          function j(t, e) {
+            var n = e || {},
+              a = n.disableForReducedMotion || y.disableForReducedMotion,
+              i = p();
+            if (a && matchMedia("(prefers-reduced-motion)").matches) return l(function (t) {
+              t();
+            });
+            i && !i.init && (i.init = R);
+            var c = !t || null === t.canvas,
+              s = (c ? R : S)(i && i.canvas ? i.canvas : c && document.createElement("canvas")),
+              u = s.width,
+              d = s.height,
+              f = {
+                particleCount: M(t, "particleCount", y.particleCount),
+                angle: M(t, "angle", y.angle),
+                spread: M(t, "spread", y.spread),
+                startVelocity: M(t, "startVelocity", y.startVelocity),
+                decay: M(t, "decay", y.decay),
+                gravity: M(t, "gravity", y.gravity),
+                drift: M(t, "drift", y.drift),
+                ticks: M(t, "ticks", y.ticks),
+                x: M(t, "x", u / 2),
+                y: M(t, "y", d / 2),
+                shapes: M(t, "shapes", y.shapes),
+                scalar: M(t, "scalar", y.scalar),
+                zIndex: M(t, "zIndex", y.zIndex),
+                colors: k(M(t, "colors", y.colors)),
+              };
+            var m = [];
+            function g() {
+              if (!m.length) return function () {};
+              return (i && !i.init ? V : q)(s, f, { width: u, height: d }, i);
+            }
+            function b() {
+              var t = g();
+              t.sync(), m.push(t);
+            }
+            return (
+              b(),
+              i && i.fire
+                ? i.fire(f, o, b)
+                : l(function (t) {
+                    if (!a && matchMedia("(prefers-reduced-motion)").matches)
+                      return void t();
+                    var e = g();
+                    e.async(t).then(function () {
+                      setTimeout(function () {
+                        e.canvas && h && (h.removeChild(e.canvas), (e.canvas = null));
+                      }, 0);
+                    });
+                  })
+            );
+          }
+          return (j.reset = function () {
+            p().reset();
+          }), j;
+        })(e, n, "undefined" != typeof navigator && /^((?!chrome|android).)*safari/i.test(navigator.userAgent), "undefined" != typeof document);
+        "function" == typeof define && define.amd
+          ? define(function () {
+              return t;
+            })
+          : "object" == typeof module && module.exports
+          ? (module.exports = t)
+          : (e.confetti = t);
+      })(this, window);
+
+      // Show video for initial loading then show the main content
+      document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('birthdayVideo');
+        const mainContent = document.querySelector('.main');
+        
+        // After video ends (or if no video), show main content
+        if (video) {
+          video.onended = function() {
+            video.style.display = 'none';
+            mainContent.style.display = 'flex';
+          };
+          
+          // Fallback if video doesn't play or is taking too long
+          setTimeout(function() {
+            video.style.display = 'none';
+            mainContent.style.display = 'flex';
+          }, 3000); // 3 seconds fallback
+        } else {
+          // If no video, show content immediately
+          mainContent.style.display = 'flex';
+        }
+      });
+
+      // Function to launch confetti
+      function confetti() {
+        window.confetti({
+          particleCount: 150,
+          spread: 180,
+          origin: { y: 0.6 }
+        });
+      }
+    </script>
+  </body>
+</html>
