@@ -30,12 +30,13 @@ const Index = () => {
 
   const handleCountdownComplete = () => {
     setIsCountdownComplete(true);
-    // Removed toast notification that was causing the popup
   };
 
   const handleRevealFullMessage = () => {
-    // Navigate to index1.html
-    window.location.href = '/Countdown/src/pages/index1.html';
+    // Instead of directly navigating to an HTML file, we'll open it in a new tab/window
+    // This ensures it works both locally and when deployed
+    const fullURL = window.location.origin + '/src/pages/index1.html';
+    window.open(fullURL, '_blank');
   };
 
   return (
