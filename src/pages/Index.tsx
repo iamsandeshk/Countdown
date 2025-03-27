@@ -12,7 +12,7 @@ const Index = () => {
   const { toast } = useToast();
 
   // Target date: March 10th at 12am
-  const targetDate = new Date('2025-03-31T00:00:00');
+  const targetDate = new Date('2025-03-10T00:00:00');
   
   // Check if the countdown is already complete on page load
   useEffect(() => {
@@ -38,10 +38,11 @@ const Index = () => {
   };
 
   const handleRevealFullMessage = () => {
-  // Open the link in the same tab
-  const fullURL = 'https://iamsandeshk.github.io/birthday/';
-  window.location.href = fullURL;
-};
+    // Instead of directly navigating to an HTML file, we'll open it in a new tab/window
+    // This ensures it works both locally and when deployed
+    const fullURL = 'https://iamsandeshk.github.io/birthday/';
+    window.open(fullURL);
+  };
 
 
   return (
@@ -89,12 +90,19 @@ const Index = () => {
                   What you've been waiting for is now revealed.
                 </p>
                 
-                <Button 
-                  onClick={handleRevealFullMessage}
-                  className="bg-white text-black hover:bg-gray-200 transition-all duration-300 px-6 sm:px-8 py-4 sm:py-6 text-base rounded-full"
-                >
-                  Reveal the Message
-                </Button>
+                {!showFullMessage ? (
+                  <Button 
+                    onClick={handleRevealFullMessage}
+                    className="bg-white text-black hover:bg-gray-200 transition-all duration-300 px-6 sm:px-8 py-4 sm:py-6 text-base rounded-full"
+                  >
+                    Reveal the Message
+                  </Button>
+                ) : (
+                  <div className="animate-fade-in">
+                    <p className="text-xl sm:text-2xl mb-6">Your special moment awaits.</p>
+                    <p className="text-gray-400">This is the beginning of something memorable.</p>
+                  </div>
+                )}
               </RevealMessage>
             </div>
           )}
