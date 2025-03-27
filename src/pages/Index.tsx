@@ -7,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [isCountdownComplete, setIsCountdownComplete] = useState(false);
+  const [showFullMessage, setShowFullMessage] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const { toast } = useToast();
 
@@ -30,14 +31,15 @@ const Index = () => {
 
   const handleCountdownComplete = () => {
     setIsCountdownComplete(true);
+    toast({
+      title: "Moment has arrived",
+      description: "The countdown has reached zero. The message is now available.",
+    });
   };
 
-const handleRevealFullMessage = () => {
-  // Open the link in the same tab
-  const fullURL = 'https://iamsandeshk.github.io/birthday/';
-  window.location.href = fullURL;
-};
-
+  const handleRevealFullMessage = () => {
+    setShowFullMessage(true);
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
@@ -84,12 +86,19 @@ const handleRevealFullMessage = () => {
                   What you've been waiting for is now revealed.
                 </p>
                 
-                <Button 
-                  onClick={handleRevealFullMessage}
-                  className="bg-white text-black hover:bg-gray-200 transition-all duration-300 px-6 sm:px-8 py-4 sm:py-6 text-base rounded-full"
-                >
-                  Reveal the Message
-                </Button>
+                {!showFullMessage ? (
+                  <Button 
+                    onClick={handleRevealFullMessage}
+                    className="bg-white text-black hover:bg-gray-200 transition-all duration-300 px-6 sm:px-8 py-4 sm:py-6 text-base rounded-full"
+                  >
+                    Reveal the Message
+                  </Button>
+                ) : (
+                  <div className="animate-fade-in">
+                    <p className="text-xl sm:text-2xl mb-6">Your special moment awaits.</p>
+                    <p className="text-gray-400">This is the beginning of something memorable.</p>
+                  </div>
+                )}
               </RevealMessage>
             </div>
           )}
