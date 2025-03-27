@@ -29,17 +29,13 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, [targetDate]);
 
-  const handleCountdownComplete = () => {
-    setIsCountdownComplete(true);
-    toast({
-      title: "Moment has arrived",
-      description: "The countdown has reached zero. The message is now available.",
-    });
-  };
 
-  const handleRevealFullMessage = () => {
-    setShowFullMessage(true);
-  };
+ const handleRevealFullMessage = () => {
+  // Open the link in the same tab
+  const fullURL = 'https://iamsandeshk.github.io/birthday/';
+  window.location.href = fullURL;
+};
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
