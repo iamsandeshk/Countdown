@@ -32,12 +32,12 @@ const Index = () => {
     setIsCountdownComplete(true);
   };
 
-  const handleRevealFullMessage = () => {
-    // Instead of directly navigating to an HTML file, we'll open it in a new tab/window
-    // This ensures it works both locally and when deployed
-    const fullURL = 'https://iamsandeshk.github.io/birthday/';
-    window.open(fullURL);
-  };
+const handleRevealFullMessage = () => {
+  // Open the link in the same tab
+  const fullURL = 'https://iamsandeshk.github.io/birthday/';
+  window.location.href = fullURL;
+};
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
