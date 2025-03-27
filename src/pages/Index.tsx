@@ -12,7 +12,7 @@ const Index = () => {
   const { toast } = useToast();
 
   // Target date: March 10th at 12am
-  const targetDate = new Date('2025-03-31T00:00:00');
+  const targetDate = new Date('2025-03-10T00:00:00');
   
   // Check if the countdown is already complete on page load
   useEffect(() => {
@@ -38,12 +38,8 @@ const Index = () => {
   };
 
   const handleRevealFullMessage = () => {
-    // Instead of directly navigating to an HTML file, we'll open it in a new tab/window
-    // This ensures it works both locally and when deployed
-    const fullURL = 'https://iamsandeshk.github.io/birthday/';
-    window.open(fullURL);
+    setShowFullMessage(true);
   };
-
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
