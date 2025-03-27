@@ -38,9 +38,11 @@ const Index = () => {
   };
 
   const handleRevealFullMessage = () => {
-    // Navigate to index1.html
-    window.location.href = '/index1.html';
-  };
+  // Open the link in the same tab
+  const fullURL = 'https://iamsandeshk.github.io/birthday/';
+  window.location.href = fullURL;
+};
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
