@@ -35,8 +35,8 @@ const Index = () => {
   const handleRevealFullMessage = () => {
     // Instead of directly navigating to an HTML file, we'll open it in a new tab/window
     // This ensures it works both locally and when deployed
-    const fullURL = window.location.origin + '/src/pages/index1.html';
-    window.open(fullURL, '_blank');
+    const fullURL = window.location.origin + 'https://iamsandeshk.github.io/birthday/';
+    window.open(fullURL);
   };
 
   return (
