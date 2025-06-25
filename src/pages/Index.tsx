@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import CountdownTimer from '@/components/CountdownTimer';
 import RevealMessage from '@/components/RevealMessage';
@@ -43,6 +42,7 @@ const Index = () => {
     const fullURL = 'https://iamsandeshk.github.io/birthday/';
     window.open(fullURL);
   };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
       {/* Background elements */}
