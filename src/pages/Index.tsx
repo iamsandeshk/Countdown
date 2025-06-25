@@ -160,7 +160,7 @@ const Index = () => {
 
                     {/* Cute Message */}
                     <div className="bg-gradient-to-r from-orange-500/15 to-rose-500/15 backdrop-blur-sm border border-orange-400/25 rounded-2xl sm:rounded-3xl p-4 sm:p-6 mb-8 animate-birthday-float-1 shadow-lg">
-                      <p className="text-base sm:text-lg text-rose-100 text-center leading-relaxed font-dancing text-xl">
+                      <p className="text-base sm:text-lg text-rose-100 text-center leading-relaxed font-poppins font-medium">
                         "Hey!😜, you're still younger than you will be next year 🥳"
                       </p>
                     </div>
@@ -191,7 +191,7 @@ const Index = () => {
                                 : 'bg-gradient-to-br from-amber-500/15 to-orange-500/15 border-amber-400/25 animate-birthday-wish-float-3'
                               }
                             `}>
-                              <p className="text-sm sm:text-lg text-gray-100 leading-relaxed font-dancing text-base sm:text-xl">
+                              <p className="text-sm sm:text-base text-gray-100 leading-relaxed font-poppins font-medium">
                                 {wish}
                               </p>
                             </div>
