@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,6 +99,115 @@
   background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
   z-index: -1;
 }
+
+/* Birthday-themed floating animations */
+@keyframes birthday-float-1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) translateX(3px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-4px) translateX(-2px) rotate(-0.5deg);
+  }
+  75% {
+    transform: translateY(-12px) translateX(1px) rotate(1.5deg);
+  }
+}
+
+@keyframes birthday-float-2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-6px) translateX(-3px) rotate(-1deg);
+  }
+  60% {
+    transform: translateY(-10px) translateX(2px) rotate(0.8deg);
+  }
+  90% {
+    transform: translateY(-3px) translateX(-1px) rotate(-0.3deg);
+  }
+}
+
+@keyframes birthday-float-3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-5px) translateX(2px) rotate(0.5deg);
+  }
+  40% {
+    transform: translateY(-8px) translateX(-1px) rotate(-1deg);
+  }
+  80% {
+    transform: translateY(-6px) translateX(3px) rotate(1.2deg);
+  }
+}
+
+@keyframes birthday-wish-float-1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) translateX(-4px) rotate(-0.8deg);
+  }
+  66% {
+    transform: translateY(-3px) translateX(2px) rotate(0.6deg);
+  }
+}
+
+@keyframes birthday-wish-float-2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) translateX(3px) rotate(0.7deg);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-2px) rotate(-1deg);
+  }
+}
+
+@keyframes birthday-wish-float-3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  40% {
+    transform: translateY(-7px) translateX(1px) rotate(0.4deg);
+  }
+  80% {
+    transform: translateY(-4px) translateX(-3px) rotate(-0.9deg);
+  }
+}
+
+/* Enhanced floating animations with smoother easing */
+.animate-birthday-float-1 {
+  animation: birthday-float-1 8s ease-in-out infinite;
+}
+
+.animate-birthday-float-2 {
+  animation: birthday-float-2 7s ease-in-out infinite;
+}
+
+.animate-birthday-float-3 {
+  animation: birthday-float-3 9s ease-in-out infinite;
+}
+
+.animate-birthday-wish-float-1 {
+  animation: birthday-wish-float-1 6s ease-in-out infinite;
+}
+
+.animate-birthday-wish-float-2 {
+  animation: birthday-wish-float-2 5.5s ease-in-out infinite;
+}
+
+.animate-birthday-wish-float-3 {
+  animation: birthday-wish-float-3 7.5s ease-in-out infinite;
+}
+
+/* ... keep existing code (all other animations and styles) */
 
 @keyframes subtle-float {
   0% {
@@ -235,7 +346,6 @@
   animation: pulse-glow 3s infinite;
 }
 
-/* Enhanced floating animations with smoother easing */
 .animate-float-slow {
   animation: float-slow 7s ease-in-out infinite;
 }
@@ -288,5 +398,42 @@
 
   .animate-float-right {
     animation: float-right 4.5s ease-in-out infinite;
+  }
+
+  /* Mobile birthday animations */
+  @keyframes birthday-wish-float-1 {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-5px) translateX(-2px) rotate(-0.4deg);
+    }
+    66% {
+      transform: translateY(-2px) translateX(1px) rotate(0.3deg);
+    }
+  }
+
+  @keyframes birthday-wish-float-2 {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-4px) translateX(2px) rotate(0.4deg);
+    }
+    75% {
+      transform: translateY(-6px) translateX(-1px) rotate(-0.5deg);
+    }
+  }
+
+  @keyframes birthday-wish-float-3 {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    40% {
+      transform: translateY(-4px) translateX(1px) rotate(0.2deg);
+    }
+    80% {
+      transform: translateY(-3px) translateX(-2px) rotate(-0.4deg);
+    }
   }
 }
