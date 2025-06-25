@@ -122,9 +122,6 @@ const Index = () => {
           ) : (
             <div className="flex flex-col items-center justify-center w-full">
               <RevealMessage isRevealed={true} className="text-center mb-10 w-full max-w-2xl mx-4">
-                <h2 className="text-3xl sm:text-4xl font-light mb-6 bg-gradient-to-r from-pink-400 to-yellow-300 bg-clip-text text-transparent">
-                  The Moment Has Arrived
-                </h2>
                 <p className="text-lg sm:text-xl text-gray-300 mb-8">
                   What you've been waiting for is now revealed.
                 </p>
@@ -139,32 +136,32 @@ const Index = () => {
                 ) : (
                   <div className="animate-fade-in space-y-6">
                     {/* Birthday Header - Improved Cards */}
-                    <div className="flex justify-center gap-4 mb-8">
-                      <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/30 rounded-3xl p-6 transform hover:scale-105 transition-all duration-300 animate-float-slow">
+                    <div className="flex justify-center gap-3 sm:gap-4 mb-8 flex-wrap">
+                      <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-slate-600/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 transform hover:scale-105 transition-all duration-300 animate-float-slow shadow-lg">
                         <div className="text-center">
-                          <div className="text-3xl font-bold text-white mb-2">01</div>
-                          <div className="text-sm text-gray-300">July</div>
+                          <div className="text-2xl sm:text-3xl font-bold text-white mb-2">01</div>
+                          <div className="text-xs sm:text-sm text-gray-300">July</div>
                         </div>
                       </div>
                       
-                      <div className="bg-gradient-to-br from-pink-500/20 to-purple-500/20 backdrop-blur-sm border border-pink-500/30 rounded-3xl p-6 transform hover:scale-105 transition-all duration-300 animate-float-medium">
+                      <div className="bg-gradient-to-br from-pink-500/20 to-purple-500/20 backdrop-blur-sm border border-pink-400/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 transform hover:scale-105 transition-all duration-300 animate-float-medium shadow-lg">
                         <div className="text-center">
-                          <div className="text-sm text-gray-300 mb-2">Year</div>
-                          <div className="text-xl font-bold text-white">2K25</div>
+                          <div className="text-xs sm:text-sm text-gray-300 mb-2">Year</div>
+                          <div className="text-lg sm:text-xl font-bold text-white">2K25</div>
                         </div>
                       </div>
                       
-                      <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-6 transform hover:scale-105 transition-all duration-300 animate-float-fast">
+                      <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-blue-400/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 transform hover:scale-105 transition-all duration-300 animate-float-fast shadow-lg">
                         <div className="text-center">
-                          <div className="text-sm text-gray-300 mb-2">Age</div>
-                          <div className="text-2xl font-bold text-white">19</div>
+                          <div className="text-xs sm:text-sm text-gray-300 mb-2">Age</div>
+                          <div className="text-xl sm:text-2xl font-bold text-white">19</div>
                         </div>
                       </div>
                     </div>
 
                     {/* Cute Message */}
-                    <div className="bg-gradient-to-r from-yellow-400/10 to-orange-400/10 backdrop-blur-sm border border-yellow-400/20 rounded-3xl p-6 mb-8 animate-float-slow">
-                      <p className="text-lg text-gray-200 text-center">
+                    <div className="bg-gradient-to-r from-amber-500/15 to-orange-500/15 backdrop-blur-sm border border-amber-400/25 rounded-2xl sm:rounded-3xl p-4 sm:p-6 mb-8 animate-float-slow shadow-lg">
+                      <p className="text-base sm:text-lg text-gray-200 text-center leading-relaxed">
                         "Hey!😜, you're still younger than you will be next year 🥳"
                       </p>
                     </div>
@@ -172,43 +169,43 @@ const Index = () => {
                     {/* Birthday Wishes Toggle */}
                     <Button 
                       onClick={toggleBirthdayWishes}
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300 px-6 py-3 rounded-full transform hover:scale-105"
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300 px-6 py-3 rounded-full transform hover:scale-105 shadow-lg"
                     >
                       {showBirthdayWishes ? "Hide Wishes" : "See Birthday Wishes"} 🎂
                     </Button>
 
                     {/* Birthday Wishes - Alternating Layout */}
                     {showBirthdayWishes && (
-                      <div className="space-y-8 mt-8 max-w-4xl mx-auto">
+                      <div className="space-y-6 sm:space-y-8 mt-8 max-w-4xl mx-auto">
                         {wishes.map((wish, index) => (
                           <div
                             key={index}
-                            className={`flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'} animate-fade-in`}
+                            className={`flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'} animate-fade-in px-2 sm:px-0`}
                             style={{ animationDelay: `${index * 0.2}s` }}
                           >
                             <div className={`
-                              max-w-md p-6 rounded-3xl backdrop-blur-sm border transform transition-all duration-500 hover:scale-105 hover:-translate-y-2
+                              max-w-xs sm:max-w-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl backdrop-blur-sm border transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-lg
                               ${index % 2 === 0 
-                                ? 'bg-gradient-to-br from-pink-500/10 to-purple-500/10 border-pink-500/20 mr-8 animate-float-right' 
-                                : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-blue-500/20 ml-8 animate-float-left'
+                                ? 'bg-gradient-to-br from-emerald-500/15 to-teal-500/15 border-emerald-400/25 animate-float-right' 
+                                : 'bg-gradient-to-br from-violet-500/15 to-indigo-500/15 border-violet-400/25 animate-float-left'
                               }
                             `}>
-                              <p className="text-lg text-gray-200 leading-relaxed">
+                              <p className="text-sm sm:text-lg text-gray-100 leading-relaxed">
                                 {wish}
                               </p>
                             </div>
                           </div>
                         ))}
                         
-                        {/* Thank You Link */}
+                        {/* Thank You Link - Updated to WhatsApp */}
                         <div className="mt-12 text-center">
                           <a 
-                            href="https://www.instagram.com/iamsandeshk/" 
+                            href="https://wa.me/919353173113?text=Thank%20you%20for%20the%20amazing%20birthday%20surprise!%20🎉" 
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm border border-pink-500/30 px-8 py-4 rounded-full text-white hover:bg-gradient-to-r hover:from-pink-500/30 hover:to-purple-500/30 transition-all duration-300 transform hover:scale-105 animate-float-slow"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-400/30 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-white hover:bg-gradient-to-r hover:from-green-500/30 hover:to-emerald-500/30 transition-all duration-300 transform hover:scale-105 animate-float-slow shadow-lg text-sm sm:text-base"
                           >
-                            Say Thank You 📸
+                            Say Thank You 💬
                           </a>
                         </div>
                       </div>
