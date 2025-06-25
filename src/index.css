@@ -110,6 +110,57 @@
   }
 }
 
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-1deg);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+
+@keyframes float-left {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) translateX(-3px) rotate(-0.5deg);
+  }
+  66% {
+    transform: translateY(-4px) translateX(2px) rotate(0.5deg);
+  }
+}
+
+@keyframes float-right {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-6px) translateX(3px) rotate(0.5deg);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-2px) rotate(-0.5deg);
+  }
+}
+
 .floating {
   animation: subtle-float 6s ease-in-out infinite;
 }
@@ -182,4 +233,25 @@
 
 .digit {
   animation: pulse-glow 3s infinite;
+}
+
+/* New floating animations */
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 3s ease-in-out infinite;
+}
+
+.animate-float-left {
+  animation: float-left 5s ease-in-out infinite;
+}
+
+.animate-float-right {
+  animation: float-right 4.5s ease-in-out infinite;
 }

@@ -58,11 +58,24 @@ const Index = () => {
     setShowBirthdayWishes(!showBirthdayWishes);
   };
 
+  const wishes = [
+    "To a special person❤️, I wish you Never ending happiness!🥰",
+    "A Day filled with Love❤️, Laughter, and all the things that make you Happy🥰",
+    "On this special day❤️, may sun shine a little brighter, the smiles😊 be bit wider and joy🥳 be endless",
+    "You don't get older, you get better❤️.",
+    "May your birthday🎂 be as amazing as you are❤️"
+  ];
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative py-8 px-4 overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-black overflow-hidden">
         <div className="absolute top-[-50%] left-[-50%] right-[-50%] bottom-[-50%] bg-[radial-gradient(circle_at_center,rgba(45,45,45,0.1),rgba(5,5,5,0.4))] animate-pulse-soft"></div>
+        {/* Floating particles */}
+        <div className="absolute top-10 left-10 w-2 h-2 bg-pink-400 rounded-full animate-float-slow opacity-60"></div>
+        <div className="absolute top-20 right-20 w-1 h-1 bg-blue-400 rounded-full animate-float-medium opacity-70"></div>
+        <div className="absolute bottom-32 left-1/4 w-3 h-3 bg-yellow-400 rounded-full animate-float-fast opacity-50"></div>
+        <div className="absolute bottom-20 right-1/3 w-2 h-2 bg-purple-400 rounded-full animate-float-slow opacity-60"></div>
       </div>
       
       <div className={`w-full max-w-4xl mx-auto flex flex-col items-center transition-all duration-700 ease-out ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -108,7 +121,7 @@ const Index = () => {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center w-full">
-              <RevealMessage isRevealed={true} className="text-center mb-10 glass-panel p-6 sm:p-10 w-full max-w-2xl mx-4">
+              <RevealMessage isRevealed={true} className="text-center mb-10 w-full max-w-2xl mx-4">
                 <h2 className="text-3xl sm:text-4xl font-light mb-6 bg-gradient-to-r from-pink-400 to-yellow-300 bg-clip-text text-transparent">
                   The Moment Has Arrived
                 </h2>
@@ -125,22 +138,33 @@ const Index = () => {
                   </Button>
                 ) : (
                   <div className="animate-fade-in space-y-6">
-                    {/* Birthday Header */}
-                    <div className="glass-panel p-6 rounded-2xl border border-pink-500/20">
-                      <div className="flex items-center justify-center gap-4 mb-4">
-                        <div className="glass-panel p-4 rounded-xl">
-                          <div className="text-2xl font-bold text-white">01</div>
+                    {/* Birthday Header - Improved Cards */}
+                    <div className="flex justify-center gap-4 mb-8">
+                      <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/30 rounded-3xl p-6 transform hover:scale-105 transition-all duration-300 animate-float-slow">
+                        <div className="text-center">
+                          <div className="text-3xl font-bold text-white mb-2">01</div>
                           <div className="text-sm text-gray-300">July</div>
                         </div>
-                        <div className="glass-panel p-4 rounded-xl bg-gradient-to-r from-pink-500/20 to-purple-500/20">
-                          <div className="text-sm text-gray-300">2K25</div>
-                        </div>
-                        <div className="glass-panel p-4 rounded-xl">
-                          <div className="text-sm text-gray-300">Age</div>
-                          <div className="text-xl font-bold text-white">19 years</div>
+                      </div>
+                      
+                      <div className="bg-gradient-to-br from-pink-500/20 to-purple-500/20 backdrop-blur-sm border border-pink-500/30 rounded-3xl p-6 transform hover:scale-105 transition-all duration-300 animate-float-medium">
+                        <div className="text-center">
+                          <div className="text-sm text-gray-300 mb-2">Year</div>
+                          <div className="text-xl font-bold text-white">2K25</div>
                         </div>
                       </div>
-                      <p className="text-lg text-gray-300 text-center">
+                      
+                      <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-6 transform hover:scale-105 transition-all duration-300 animate-float-fast">
+                        <div className="text-center">
+                          <div className="text-sm text-gray-300 mb-2">Age</div>
+                          <div className="text-2xl font-bold text-white">19</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Cute Message */}
+                    <div className="bg-gradient-to-r from-yellow-400/10 to-orange-400/10 backdrop-blur-sm border border-yellow-400/20 rounded-3xl p-6 mb-8 animate-float-slow">
+                      <p className="text-lg text-gray-200 text-center">
                         "Hey!😜, you're still younger than you will be next year 🥳"
                       </p>
                     </div>
@@ -148,51 +172,41 @@ const Index = () => {
                     {/* Birthday Wishes Toggle */}
                     <Button 
                       onClick={toggleBirthdayWishes}
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300 px-6 py-3 rounded-full"
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300 px-6 py-3 rounded-full transform hover:scale-105"
                     >
                       {showBirthdayWishes ? "Hide Wishes" : "See Birthday Wishes"} 🎂
                     </Button>
 
-                    {/* Birthday Wishes */}
+                    {/* Birthday Wishes - Alternating Layout */}
                     {showBirthdayWishes && (
-                      <div className="space-y-4 animate-fade-in">
-                        <div className="glass-panel p-6 rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/10 to-purple-500/10">
-                          <p className="text-lg text-gray-200">
-                            "To a special person❤️, I wish you Never ending happiness!🥰"
-                          </p>
-                        </div>
+                      <div className="space-y-8 mt-8 max-w-4xl mx-auto">
+                        {wishes.map((wish, index) => (
+                          <div
+                            key={index}
+                            className={`flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'} animate-fade-in`}
+                            style={{ animationDelay: `${index * 0.2}s` }}
+                          >
+                            <div className={`
+                              max-w-md p-6 rounded-3xl backdrop-blur-sm border transform transition-all duration-500 hover:scale-105 hover:-translate-y-2
+                              ${index % 2 === 0 
+                                ? 'bg-gradient-to-br from-pink-500/10 to-purple-500/10 border-pink-500/20 mr-8 animate-float-right' 
+                                : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-blue-500/20 ml-8 animate-float-left'
+                              }
+                            `}>
+                              <p className="text-lg text-gray-200 leading-relaxed">
+                                {wish}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
                         
-                        <div className="glass-panel p-6 rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-blue-500/10">
-                          <p className="text-lg text-gray-200">
-                            "A Day filled with Love❤️, Laughter, and all the things that make you Happy🥰"
-                          </p>
-                        </div>
-                        
-                        <div className="glass-panel p-6 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
-                          <p className="text-lg text-gray-200">
-                            "On this special day❤️, may sun shine a little brighter, the smiles😊 be bit wider and joy🥳 be endless"
-                          </p>
-                        </div>
-                        
-                        <div className="glass-panel p-6 rounded-2xl border border-yellow-500/20 bg-gradient-to-br from-yellow-500/10 to-orange-500/10">
-                          <p className="text-lg text-gray-200">
-                            "You don't get older, you get better❤️."
-                          </p>
-                        </div>
-                        
-                        <div className="glass-panel p-6 rounded-2xl border border-green-500/20 bg-gradient-to-br from-green-500/10 to-teal-500/10">
-                          <p className="text-lg text-gray-200">
-                            "May your birthday🎂 be as amazing as you are❤️"
-                          </p>
-                        </div>
-
                         {/* Thank You Link */}
-                        <div className="mt-8">
+                        <div className="mt-12 text-center">
                           <a 
                             href="https://www.instagram.com/iamsandeshk/" 
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 glass-panel px-6 py-3 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm border border-pink-500/30 px-8 py-4 rounded-full text-white hover:bg-gradient-to-r hover:from-pink-500/30 hover:to-purple-500/30 transition-all duration-300 transform hover:scale-105 animate-float-slow"
                           >
                             Say Thank You 📸
                           </a>
