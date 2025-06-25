@@ -44,7 +44,7 @@ const Index = () => {
     
     // Trigger confetti effect
     setTimeout(() => {
-      if (window.confetti) {
+      if (typeof window !== 'undefined' && window.confetti) {
         window.confetti({
           particleCount: 100,
           spread: 70,
