@@ -13,7 +13,7 @@ const Index = () => {
   const { toast } = useToast();
 
   // Target date: June 25th at 9:50 PM
-  const targetDate = new Date('2025-06-25T21:50:00');
+  const targetDate = new Date('2025-06-25T22:16:00');
   
   // Check if the countdown is already complete on page load
   useEffect(() => {
