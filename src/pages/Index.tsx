@@ -111,7 +111,7 @@ const Index = () => {
               
               <div className="staggered text-center mt-6 md:mt-10 px-4">
                 <p className="text-gray-300 text-lg sm:text-xl font-light">
-                  Please return when the countdown reaches zero
+                  Your Request is Accepted and I am Joining You ( idk for what..😁🤣 )
                 </p>
                 <p className="text-gray-500 text-sm mt-2">
                   This message will be revealed at the designated time
